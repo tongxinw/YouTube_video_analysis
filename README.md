@@ -1,3 +1,5 @@
+[logo](youtube-logo-new.jpg)
+
 # YouTube Video Analysis
 Tongxin Wang   
 12/03/2019   
