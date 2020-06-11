@@ -1,4 +1,4 @@
-[logo](youtube-logo-new.jpg)
+[logo](figures/youtube-logo-new.jpg)
 
 # YouTube Video Analysis
 Tongxin Wang   
