@@ -1,18 +1,18 @@
-#YouTube Video Analysis#
+# YouTube Video Analysis
 Tongxin Wang   
 12/03/2019   
 Brown University Data Science Inisitive   
 [GitHub](https://github.com/tongxinw/YouTube_video_analysis)
 
-## I. Introduction ##   
-### Motivation: ###  
+## I. Introduction   
+### Motivation:
 YouTube is the world's largest video sharing platform and currently has 2 billion monthly active users, which accounts for 45% of the world's entire online population. As of 2018, there are more than 23 million YouTube channels, and Top-10 YOuTube channels earned $\$180.5$ billion between June 2017 and June 2018. PewDiePie alone has cleared at least $\$9$ million a year from advertising earning on his YouTube channel. Not only creating contents, these top YouTubers also have vast influences on their subscribers as well as the off-line world. YouTube is a website full of video contents along with tremendous market value. YouTube releases statistics of top 200 trending videos daily and the insights gained from these videos would be highly valuable for YouTubers as well as commercial users to improve their video performances to generate higher revenues.  
 
-### Problem to solve: ###
+### Problem to solve:
 In this project, we are aiming to predict the total trending days of certain videos based on their performances, such as views, comments, likes and dislikes. Thus, the target variable is the total trending days, which makes this machine learning project a regression problem.
 
 
-### About the Data set:### 
+### About the Data set:
 
 Data set: [Trending YouTube Video Statistics](https://www.kaggle.com/datasnaek/youtube-new)
 
@@ -48,7 +48,7 @@ In addition to provided features, we added several features for EDA and modeling
 - interaction_rate: $\frac{likes + dislikes + 2 * comment\_count}{views} * 100$
 
 
-### Previous research:###  
+### Previous research:
 
 This dataset is retrieved from Kaggle and it contains data from several countries, such as UK, Canada, Mexico, Japan, South Korea, France. etc. People have been using these data in the following ways:
 Sentiment analysis in a variety of forms
@@ -58,7 +58,7 @@ Analysing what factors affect how popular a YouTube video will be.
 Statistical analysis over time
 There are more than 500 kennels about this dataset on the Kaggle website about the aforementioned topics, and these projects could be found [here](https://www.kaggle.com/datasnaek/youtube-new/kernels). 
 
-## II. EDA ##   
+## II. EDA   
 
 In this section, we will analyse individual features. 
 
@@ -108,7 +108,7 @@ Figure 3.6: Correlation matrix of the data frame.
 After preprocessing, there are 29 feature columns in the data frame. We can see most of the feature are less correlated, but x1_0.0 and x1_1.0 are negatively correlated as x1 is a binary feature. X2 and x3 have the similar characteristics as x1. It also makes sense to see that views, likes, dislikes, like_rate, dislike_rate and interaction_rate are positively correlated. 
 
 
-## III. Methods ##
+## III. Methods
 
 To understand the relationships between total trending days video’s performance, we have to modify the data sets in the following ways. 
 
@@ -122,7 +122,7 @@ seaborn: 0.9.0
 matplotlib: 3.1.1
 
 
-### Understanding Added Columns:###
+### Understanding Added Columns:
 
 - We added total_trending_days by counting the number of times a certain video appears in the trending list.   
 
@@ -130,12 +130,12 @@ matplotlib: 3.1.1
 
 - We added interaction_rate to measure the interaction rate for each video. Due to more efforts are putting into comment(typing) than like/dislike(clicking buttons), the coefficient for comments is higher than likes and dislikes. I think 2 is a reasonable number, but there can be other choices. 
 
-### Reducing rows:###
+### Reducing rows:
 
 - As we are analyzing the total trending days for each video, it is unnecessary to keep duplicate videos in the data set. Thus we removed all the duplicate videos and kept the ones which last appear on the trending list. This reduces the number of videos on the list from 40946 to 6351 unique videos. 
 
 
-### Model training and Machine Learning Pipelines:### 
+### Model training and Machine Learning Pipelines: 
 
 The metric I used to evaluate all models’ performance is MSE as this is a regression problem. 
 ![model_info](figures/model_info.png)
@@ -144,7 +144,7 @@ In Lasso, the uncertainty due to splitting is 0.22 +/- 0.02. In Random forest, t
 
 In general, while performing machine learning pipeline, we need to consider several important steps. First of all, regression problems use different models compared to classification problems. Thus, we can not use logistic regression for regression problems. Also, while training models, we encountered convergence waring, thus we need to take max_iteratin into consideration. Moreover, while tuning the parameters, we need to make sure the best parameter is at the edge of the range of parameters. 
 
-## IV. Results## 
+## IV. Results
 
 We can see that the R2 score for these three models are 0.22 +/- 0.02, 0.23 +/- 0.02 and 0.23 +/- 0.02, which means they are 11 standard deviation above the base line, 11.5 standard deviation above the base line, and 11.5 standard deviation above the base line. Thus, random forest and XGBoost performs better than Lasso regression. 
 
@@ -154,11 +154,11 @@ We can see that the R2 score for these three models are 0.22 +/- 0.02, 0.23 +/- 
 We can see from the Figure 3.7, numerical features have higher feature importances than other categorical features. Number of likes is the feature contributes the most feature importance. 
 
 
-## V. Outlook## 
+## V. Outlook
 
 If we could get more information on videos not only containing trending videos, we might be able to predict whether a video could be classified as a trending videos. Moreover, we could also analysis the text info contained in the data set, such as the title and the tag. It would be interesting to see whether the number of tags influences the number of views a video get or not. There are many things could be done if I have more data and advanced analysing techniques. 
 
-## VI. References ##    
+## VI. References   
 https://www.businessofapps.com/data/youtube-statistics/#1    
 https://influencermarketinghub.com/pewdiepie-net-worth/  
 https://www.kaggle.com/teezhiyao/ai-project/notebook#1.-Introduction
